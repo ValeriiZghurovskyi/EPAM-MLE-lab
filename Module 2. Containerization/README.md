@@ -12,7 +12,7 @@ cd EPAM-MLE-lab
 
 2. Navigate to the `Module 2. Containerization` folder:
 ```bash
-cd Module 2. Containerization
+cd 'Module 2. Containerization'
 ```
 
 3. Run the script to download the model and test files:
