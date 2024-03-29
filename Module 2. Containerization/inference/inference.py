@@ -38,13 +38,9 @@ def run_inference(model, data):
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    # with open('../settings.json') as f:
-    #     settings = json.load(f)
     with open('settings.json') as f:
         settings = json.load(f)
 
-    # model_path = "../" + settings['general']['models_dir'] + "/" + settings['inference']['model_name']
-    # inference_data_path = "../" + settings['general']['data_dir'] + "/" + settings['inference']['inp_table_name']
     model_path = settings['general']['models_dir'] + "/" + settings['inference']['model_name']
     inference_data_path = settings['general']['data_dir'] + "/" + settings['inference']['inp_table_name']
 
@@ -66,10 +62,6 @@ if __name__ == "__main__":
         'Probability Class 1': probabilities[:, 1],
         'Probability Class 2': probabilities[:, 2]
     })
-
-    # results_dir = "../" + settings['general']['results_dir']
-    # if not os.path.exists(results_dir):
-    #     os.makedirs(results_dir)
 
     results_dir = settings['general']['results_dir']
     if not os.path.exists(results_dir):
