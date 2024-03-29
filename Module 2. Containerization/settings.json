@@ -1,0 +1,11 @@
+{
+    "general": {
+        "data_dir": "data",
+        "models_dir": "models",
+        "results_dir": "results"
+    },
+    "inference": {
+        "model_name": "iris_model.pkl",
+        "inp_table_name": "iris_inference.csv"
+    }
+}
