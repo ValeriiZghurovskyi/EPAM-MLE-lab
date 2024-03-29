@@ -10,7 +10,12 @@ git clone https://github.com/ValeriiZghurovskyi/EPAM-MLE-lab
 cd EPAM-MLE-lab
 ```
 
-2. Run the script to download the model and test files:
+2. Navigate to the `Module 2. Containerization` folder:
+```bash
+Module 2. Containerization
+```
+
+3. Run the script to download the model and test files:
 ```bash
 python3 data_download/data_download.py
 ```
