@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY training/ ./training
 COPY data/ ./data
+COPY data_process/ ./data_process
 COPY settings.json .
 
 COPY requirements.txt .

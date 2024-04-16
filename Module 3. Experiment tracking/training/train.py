@@ -54,9 +54,13 @@ def train_model(settings, model_to_train, learning_rate, epochs):
     with mlflow.start_run(run_name=run_name):
         data_dir = settings['general']['data_dir']
         train_path = f"{data_dir}/{settings['train']['table_name']}"
-        models_dir = settings['general']['models_dir']
 
         data = pd.read_csv(train_path)
+        dataset = mlflow.data.from_pandas(data, source='https://drive.google.com/uc?id=1I4Na7bGuuNgdqYZPM_LmYZwTdf5n7nH4', name="Iris Dataset", targets="target")
+        mlflow.log_input(dataset, context="training")
+        mlflow.log_artifact('training/train.py', 'Train code')
+        mlflow.log_artifact('data_process/data_generation.py', 'Data generation code')
+        mlflow.log_artifact('data/iris_train.csv', 'Dataset')
         X = data.drop('target', axis=1).values
         y = LabelEncoder().fit_transform(data['target'])
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=settings['train']['test_size'], random_state=settings['general']['random_state'])
@@ -136,6 +140,7 @@ if __name__ == "__main__":
         data_dir = settings['general']['data_dir']
         train_path = f"{data_dir}/{settings['train']['table_name']}"
         data = pd.read_csv(train_path)
+        dataset = mlflow.data.from_pandas(data, source='https://drive.google.com/uc?id=1I4Na7bGuuNgdqYZPM_LmYZwTdf5n7nH4', name="Iris Dataset", targets="target")
         X = data[features].values
         y = data['target']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=settings['train']['test_size'], random_state=settings['general']['random_state'])
@@ -146,7 +151,7 @@ if __name__ == "__main__":
         recall = recall_score(y_test, predictions, average='macro')
         f1 = f1_score(y_test, predictions, average='macro')
         loss = 1 - accuracy
-
+        
         features_str = "_".join(features) 
         run_name = f"SVC_{features_str}"
         with mlflow.start_run(run_name=run_name):
@@ -155,7 +160,11 @@ if __name__ == "__main__":
                 'test_size': settings['train']['test_size'],
                 'random_state': settings['general']['random_state']
             })
+            mlflow.log_input(dataset, context="training")
             mlflow.log_artifact('requirements.txt')
+            mlflow.log_artifact('training/train.py', 'Train code')
+            mlflow.log_artifact('data_process/data_generation.py', 'Data generation code')
+            mlflow.log_artifact('data/iris_train.csv', 'Dataset')
 
             mlflow.log_metrics({
                 'Loss': loss.item(),
