@@ -1,9 +1,10 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.utils.dates import days_ago
+from datetime import datetime
 import pandas as pd
 import requests
 import os
+import pickle
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import OneHotEncoder
 
@@ -81,7 +82,8 @@ def cross_validation_task(**context):
     folds = []
     for train_index, val_index in kf.split(X_train):
         folds.append((train_index, val_index))
-    context['ti'].xcom_push(key='folds', value=folds)
+    with open('/opt/airflow/data/folds.pkl', 'wb') as f:
+        pickle.dump(folds, f)
 
 def one_hot_encoding_task(**context):
     X_train = pd.read_csv('/opt/airflow/data/X_train.csv')
@@ -123,31 +125,6 @@ def drop_columns_task(**context):
             chunk.to_csv('/opt/airflow/data/X_test.csv', index=False, mode='w')
         else:
             chunk.to_csv('/opt/airflow/data/X_test.csv', index=False, mode='a', header=False)
-
-
-download_shops = PythonOperator(
-    task_id='download_shops',
-    python_callable=download_shops_task,
-    dag=dag,
-)
-
-download_sales_train = PythonOperator(
-    task_id='download_sales_train',
-    python_callable=download_sales_train_task,
-    dag=dag,
-)
-
-download_items = PythonOperator(
-    task_id='download_items',
-    python_callable=download_items_task,
-    dag=dag,
-)
-
-download_item_categories = PythonOperator(
-    task_id='download_item_categories',
-    python_callable=download_item_categories_task,
-    dag=dag,
-)
 
 load_and_merge_data = PythonOperator(
     task_id='load_and_merge_data',
