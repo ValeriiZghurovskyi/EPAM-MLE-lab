@@ -24,7 +24,7 @@ The `future_sales_data_preprocessing` DAG mainly includes the following tasks:
 
 These tasks are structured in such a way that each task depends on the successful completion of its preceding task. This dependency pattern is visually conveyed by the '>>' operator that connects the tasks.
 
-As part of performance optimization and memory utilization, XComs (cross-communications) capabilities of Airflow is employed to pass the data across tasks. XCom is a mechanism that allows tasks to exchange messages or small amounts of data. However, due to its size limitation, using XCom to transfer large amounts of data was not plausible. In this project, XCom is used only to pass the result of the cross-validation task.
+As part of performance optimization and memory utilization, XComs (cross-communications) capabilities of Airflow is employed to pass the data across tasks. XCom is a mechanism that allows tasks to exchange messages or small amounts of data. However, due to its size limitation, using XCom to transfer large amounts of data was not plausible.
 
 ## How to setup and run
 
