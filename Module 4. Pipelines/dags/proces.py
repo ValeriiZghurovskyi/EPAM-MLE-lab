@@ -2,8 +2,6 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import pandas as pd
-import requests
-import os
 import pickle
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import OneHotEncoder
