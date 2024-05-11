@@ -1,0 +1,16 @@
+{
+    "general": {
+        "batch_dir": "batch",
+        "model_artifacts_dir": "model_artifacts",
+        "online_dir": "online",
+        "data_dir": "files"
+    },
+    "batch": {
+        "model_name": "iris_model.pkl",
+        "inp_table_name": "iris_inference.csv",
+        "result_table_name": "iris_result.csv"
+    },
+    "online": {
+        "model_name": "iris_model.pkl"
+    }
+}
