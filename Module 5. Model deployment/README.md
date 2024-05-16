@@ -125,3 +125,5 @@ python setup.py register
 ```
 
 If you haven’t published things on PyPI before, you’ll need to create an account.
+
+Link to the PyPI: https://pypi.org/project/epam-mle-model-deployment/
