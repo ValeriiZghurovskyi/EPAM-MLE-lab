@@ -6,29 +6,12 @@ import torch.nn as nn
 import json
 from datetime import datetime
 
-class IrisNet(nn.Module):
-    def __init__(self):
-        """Define layers of the neural network."""
-        super(IrisNet, self).__init__()
-        self.fc1 = nn.Linear(4, 128)
-        self.fc2 = nn.Linear(128, 64)
-        self.fc3 = nn.Linear(64, 32)
-        self.fc4 = nn.Linear(32, 3)
-
-    def forward(self, x):
-        """Define the forward pass of the neural network."""
-        x = torch.relu(self.fc1(x))
-        x = torch.relu(self.fc2(x))
-        x = torch.relu(self.fc3(x))
-        x = self.fc4(x)
-        return x
 
 def load_model(model_path):
     """Load the trained model from a file."""
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found: {model_path}")
-    model = IrisNet()
-    model.load_state_dict(torch.load(model_path))
+    model = torch.jit.load(model_path)
     model.eval()
     return model
 
