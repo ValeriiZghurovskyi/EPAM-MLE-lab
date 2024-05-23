@@ -157,9 +157,11 @@ python test_endpoint.py
 I ran this code twice with different parameters to make sure it works:
 
 First run:
+
 ![](images/1.png)
 
 Second run:
+
 ![](images/2.png)
 
 11. **Delete Endpoint**. You can do this by running the file `delete_endpoint.py`
