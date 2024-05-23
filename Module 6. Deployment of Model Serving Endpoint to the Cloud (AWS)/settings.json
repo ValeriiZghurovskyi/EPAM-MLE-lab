@@ -1,0 +1,9 @@
+{
+    "ModelName": "mymodel",
+    "Image": "637423199688.dkr.ecr.eu-north-1.amazonaws.com/my_model:latest",
+    "ExecutionRoleArn": "arn:aws:iam::637423199688:role/admin",
+    "EndpointConfigName": "mymodel-config",
+    "InstanceType": "ml.m5.large",
+    "EndpointName": "mymodel-endpoint",
+    "InputData": {"features": [8, 2, 4, 1]}
+}
