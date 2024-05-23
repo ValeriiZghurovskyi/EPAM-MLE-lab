@@ -164,6 +164,8 @@ Second run:
 
 ![](images/2.png)
 
+As we can see, we successfully get predictions
+
 11. **Delete Endpoint**. You can do this by running the file `delete_endpoint.py`
 
 go to the `Module 6. Deployment of Model Serving Endpoint to the Cloud (AWS)` folder if you are not already in it:
