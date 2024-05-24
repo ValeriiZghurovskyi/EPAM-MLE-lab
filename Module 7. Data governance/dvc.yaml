@@ -1,0 +1,32 @@
+stages:
+  clean_data:
+    cmd: python3 src/clean_data.py
+    deps:
+    - data/train.csv
+    - src/clean_data.py
+    outs:
+    - data/clean.csv
+  encode_data:
+    cmd: python3 src/encoding.py
+    deps:
+    - data/clean.csv
+    - src/encoding.py
+    outs:
+    - data/encoded.csv
+  scale_data:
+    cmd: python3 src/scaling.py
+    deps:
+    - data/encoded.csv
+    - src/scaling.py
+    outs:
+    - data/processed.csv
+  train:
+    cmd: python3 src/train.py
+    deps:
+    - data/processed.csv
+    - src/train.py
+    outs:
+    - model.pkl
+    metrics:
+    - metrics.json:
+        cache: false
