@@ -65,6 +65,7 @@ git push
 ```
 
 6. Creating pipeline:
+   
 a. You need to move all the scripts for processing and training to the `src` folder.
 
 b. Create dvc.yaml using next commands:
