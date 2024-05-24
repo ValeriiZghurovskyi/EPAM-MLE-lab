@@ -9,6 +9,7 @@ Here's a step-by-step guide on how to deploy model serving endpoint to the cloud
 3. **Upload your model artifacts to your S3 bucket**. For instructions on how to upload your model to your bucket, see [Upload an object to your bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/uploading-an-object-bucket.html) in the Amazon S3 User Guide.
 
 >I upload my model to our created "testepambucket" in "model_artifacts" folder.
+
 >You can find model file in `models` folder(I have added this folder in case you want to download the model file and reproduce my experiment. This folder is not required in this project and is not used in any way in the code)
 
 4. **Create an IAM role for Amazon SageMaker**. Amazon SageMaker needs access to the S3 bucket that stores your model. Create an IAM role with a policy that gives SageMaker read access to your bucket.
